@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+
+    <section class="clearfix">
+        <section>
+            <article class="full-width">
+                <h1>
+                    ChibiUrl
+                </h1>
+                <h3>
+                    - simply short urls
+                </h3>
+            </article>
+        </section>
+
+        <section class="clearfix start">
+
+            <article class="full-width">
+                <span>
+                    <input type="text" asp-for="InputUrl" placeholder="Enter valid URL here" class="full-width-input" />
+                </span>
+            </article>
+
+            <aside class="chibi-button">
+                <button type="submit" class="chibify">Chibify!</button>
+            </aside>
+
+        </section>
+    </section>
+
+</form>
+
+<table class="recent-urls">
+    <tr>
+        <td colspan="4">
+            <h3>Recently chibified urls</h3>
+        </td>
+    </tr>
+
+    @{
+        foreach (var item in Model.savedUrls)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.OriginalUrl)</td>
+                <td>@Html.DisplayFor(m => item.CreatedDate)</td>
+                <td>@Html.DisplayFor(m => item.ShortUrl)</td>
+            </tr>
+        }
+    }
+</table>
